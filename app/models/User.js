@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     uidCorreo: {
       type: DataTypes.UUID,
       allowNull: false,
+      defaultValue: UUIDV4
     },
     habilitado: {
       type: DataTypes.BOOLEAN,
@@ -44,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     tableName: 'users'
   });
-  User.beforeCreate(async (User, options) => {
+  User.beforeCreate(async (User) => {
     try {
       //encriptar contraseña previo a la creacion de usuario
       const hashedPassword = await bcrypt.hashSync(User.password, +authConfig.rounds);
@@ -53,6 +54,9 @@ module.exports = (sequelize, DataTypes) => {
       console.log(err);
       res.status(500);
     }
+  });
+  User.beforeCreate(() => {
+    
   });
   return User;
 };
