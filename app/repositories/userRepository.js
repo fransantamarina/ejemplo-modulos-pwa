@@ -2,12 +2,13 @@ const { User } = require("../models/index");
 
 module.exports = {
 
-    async createUser(nombre, apellido, correo, password) {
-        try {
-            return await User.create({ nombre, apellido, correo, password });
-        } catch (error) {
-            return error
-        }
+    async createUser(user) {
+        await User.create(user)
+            .then((user) => {
+                return { correo, uidCorreo } = user.dataValues
+            }).catch((err) => {
+                console.log(err)
+            });
     },
 
     async findUserByEmail(correo) {

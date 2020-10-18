@@ -20,9 +20,7 @@ module.exports = {
   migrationStorageTableName: 'migrations',
 
   define: {
-    timestamps: true,
-    //Genera foreign keys en underscore
-    underscored: true
+    timestamps: true,    
   }
 }
 

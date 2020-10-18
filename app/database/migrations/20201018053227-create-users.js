@@ -23,7 +23,8 @@ module.exports = {
         type: Sequelize.UUID
       },
       habilitado: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultvalue: 0,
       },     
       createdAt: {
         allowNull: false,

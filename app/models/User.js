@@ -1,6 +1,7 @@
 'use strict';
 const { Model, UUIDV4 } = require('sequelize');
 const bcrypt = require("bcrypt");
+const { rounds } = require("../../config/auth")
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
 
@@ -39,24 +40,21 @@ module.exports = (sequelize, DataTypes) => {
     habilitado: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false,
     }
   }, {
     sequelize,
     modelName: 'User',
     tableName: 'users'
   });
-  User.beforeCreate(async (User) => {
+  User.beforeCreate(async (User) => {    
     try {
       //encriptar contraseña previo a la creacion de usuario
-      const hashedPassword = await bcrypt.hashSync(User.password, +authConfig.rounds);
+      const hashedPassword = await bcrypt.hashSync(User.password, +rounds);
       User.password = hashedPassword;
     } catch (err) {
-      console.log(err);
-      res.status(500);
+      console.log(err);            
     }
-  });
-  User.beforeCreate(() => {
-    
   });
   return User;
 };
