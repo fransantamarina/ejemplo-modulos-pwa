@@ -1,0 +1,28 @@
+{
+  "name": "tarea-individual-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fransantamarina/tarea-individual-1.git"
+  },
+  "author": "Francisco Santamarina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fransantamarina/tarea-individual-1/issues"
+  },
+  "homepage": "https://github.com/fransantamarina/tarea-individual-1#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.2.5",
+    "nodemailer": "^6.4.14",
+    "sequelize": "^6.3.5",
+    "uuid": "^8.3.1"
+  }
+}
