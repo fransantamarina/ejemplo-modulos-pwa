@@ -15,16 +15,17 @@ const register = async (req, res) => {
         })
 };
 
+const confirmRegistration = async (req, res) => {
+    const {token} = req.query;    
+    const msg = await userService.confirmRegistration(token);
+    res.json({msg})
+    
 
-
-
-
-
-
-
-
+};
 
 /* POST users registration. */
 router.post('/register', register);
+/*ESTA RUTA DEBERIA SER POST YA QUE SE CAMBIA EL ESTADO DE HABILITACION EN LA BASE DE DATOS, PARA TESTING SE USA UN METODO GET*/
+router.get('/confirm?', confirmRegistration)
 
 module.exports = router;

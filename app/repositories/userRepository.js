@@ -17,8 +17,30 @@ module.exports = {
         });
     },
 
+    // async findUserByUid(uidCorreo) {
+    //     return await User.findOne({
+    //         where: { uidCorreo },                     
+    //     });
+    // },
+
+
+    /*Devuelve solo el nombre del usuario si encuentra uno*/
+    async findUserByUid(uidCorreo) {
+        const {nombre} = dataValues = await User.findOne({
+            where: { uidCorreo },
+            attributes: ['nombre']                     
+        });  
+        return {nombre};     
+    },
+
     async findUserById(id) {
         return await User.findByPk(id);
+    },
+
+    async authenticateUser(uidCorreo) {
+        await User.update({ habilitado: true }, {
+            where: { uidCorreo },
+          });
     }
 }
 

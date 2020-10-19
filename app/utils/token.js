@@ -18,10 +18,9 @@ module.exports.createToken = (payload) => {
 };
 module.exports.verifyToken = (token) => {
     try {
-        return verify(token, publicKey);
+        return verify(token, publicKey)
     } catch (error) {
         console.log(error);
         return "Error al verificar el token"
     }
-
-}
+};

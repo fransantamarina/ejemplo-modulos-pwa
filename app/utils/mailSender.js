@@ -11,8 +11,6 @@ module.exports.sendEmail = async ({ to, subject, token = null }) => {
             tls: {
                 rejectUnauthorized: false
             },
-           
-
         });
 
         const mail = {
@@ -24,8 +22,8 @@ module.exports.sendEmail = async ({ to, subject, token = null }) => {
         };
 
         return { messageId } = await transporter.sendMail(mail);
-            
-        
+
+
     } catch (err) {
         console.log(err)
         return "Error al enviar email"
