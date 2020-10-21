@@ -38,7 +38,7 @@ module.exports = {
     },
 
     async authenticateUser(uidCorreo) {
-        await User.update({ habilitado: true }, {
+        return await User.update({ habilitado: true }, {
             where: { uidCorreo },
           });
     }

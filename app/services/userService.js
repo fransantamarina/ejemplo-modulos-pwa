@@ -31,11 +31,14 @@ const register = async (user) => {
 const confirmRegistration = async (token) => {
     try {
         const { uidCorreo } = verifiedToken = await verifyToken(token);
-        const {nombre} = await userRepository.findUserByUid(uidCorreo);
+        const { nombre } = await userRepository.findUserByUid(uidCorreo);
         if (!nombre) {
             return "No se encontro el usuario"
         } else {
-            await userRepository.authenticateUser(uidCorreo);                        
+            const result = await userRepository.authenticateUser(uidCorreo)
+            console.log("RESULTADO DE UPDATE", result)
+
+
             return `Gracias por registrarte, ${nombre}`
         }
     } catch (error) {
