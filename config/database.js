@@ -7,6 +7,7 @@ module.exports = {
   host: process.env.DB_HOST,
   dialect: process.env.DB_DIALECT,
 
+
   //Configurar seeds
   //Crea archivo json con info sobre las siembras realizadas
   //y evita que se repitan desde un mismo archivo
