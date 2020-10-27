@@ -1,6 +1,7 @@
 const userRepository = require('../repositories/userRepository')
 const { createToken, verifyToken } = require('../utils/token')
 const { sendEmail } = require("../utils/mailSender")
+const { saveImg, savePDF } = require('./../utils/fileHandler');
 
 
 const register = async (user) => {
@@ -11,6 +12,9 @@ const register = async (user) => {
             return "El email ingresado ya está en uso"
         } else {
             await userRepository.createUser(user)
+            console.log(correo, uidCorreo, id)
+            const uid = saveImg(fileObj)
+            //insertar en la tabla correspondiente el uid usuario
             const token = createToken({ uidCorreo })
 
             //Envio de email
@@ -49,6 +53,15 @@ const confirmRegistration = async (token) => {
 }
 
 
+//prueba subida de archivos
+const createFile = (fileObj) => {
+    console.log("File en userService ", fileObj)
+    const uid = saveImg(fileObj)
+    return uid;
+}
 
 
-module.exports = { register, confirmRegistration }
+
+
+
+module.exports = { register, confirmRegistration, createFile }

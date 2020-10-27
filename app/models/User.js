@@ -4,9 +4,11 @@ const bcrypt = require("bcrypt");
 const { rounds } = require("../../config/auth")
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-
     static associate(models) {
-        
+      User.hasMany(models.Image, {
+        foreignKey: 'ownerId',
+        as: 'images'
+      });
     }
   };
   User.init({
@@ -47,13 +49,13 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
     tableName: 'users'
   });
-  User.beforeCreate(async (User) => {    
+  User.beforeCreate(async (User) => {
     try {
       //encriptar contraseña previo a la creacion de usuario
       const hashedPassword = await bcrypt.hashSync(User.password, +rounds);
       User.password = hashedPassword;
     } catch (err) {
-      console.log(err);            
+      console.log(err);
     }
   });
   return User;
