@@ -3,7 +3,8 @@ const userService = require('../services/userService')
 
 const register = async (req, res) => {
     const user = { nombre, apellido, correo, password } = req.body;
-    await userService.register(user)
+    const img = req.file;
+    await userService.register(user, img)
         .then(result => {
             if (result) {
                 res.json(result)

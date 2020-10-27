@@ -4,7 +4,7 @@ const { sendEmail } = require("../utils/mailSender")
 const { saveImg, savePDF } = require('./../utils/fileHandler');
 
 
-const register = async (user) => {
+const register = async (user, {img = null}) => {
     //Se busca el usuario por email y si se encuentra se devuelve mensaje de email en uso
     try {
         const foundUser = await userRepository.findUserByEmail(user.correo)
