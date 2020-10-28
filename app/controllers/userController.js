@@ -24,7 +24,7 @@ const confirmRegistration = async (req, res) => {
 const saveImage = async (req, res) => {
     try {
         const uidImagen = await userService.createFile(req.file)
-        res.json({uidImagen: uidImagen})
+        res.json({ uidImagen: uidImagen })
     } catch (error) {
         res.json(error)
     }

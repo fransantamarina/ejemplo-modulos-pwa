@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Image extends Model {
 
     static associate(models) {
-      Image.belongsTo(models.User, {
+      const Owner = Image.belongsTo(models.User, {
         foreignKey: 'ownerId',
         as: 'owner',
         onUpdate: 'CASCADE',
@@ -15,12 +15,19 @@ module.exports = (sequelize, DataTypes) => {
   Image.init({
     id: {
       type: DataTypes.UUID,
-      allowNull = false,
+      allowNull: false,
+      primaryKey: true
     },
-    idOwner: {
+    ownerId: {
       type: DataTypes.UUID,
-      allowNull = false,
-    }
+      allowNull: false,
+      references: {
+        model: {
+          tableName: 'users'
+        },
+        key: 'id'
+      }
+    },
   }, {
     sequelize,
     modelName: 'Image',
