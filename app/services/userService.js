@@ -4,17 +4,23 @@ const { sendEmail } = require("../utils/mailSender")
 const { saveImg, savePDF } = require('./../utils/fileHandler');
 
 
-const register = async (user, img) => {
+const register = async (user, imgs) => {
     //Se busca el usuario por email y si se encuentra se devuelve mensaje de email en uso
     try {
         const foundUser = await userRepository.findUserByEmail(user.correo)
         if (foundUser) {
             return "El email ingresado ya está en uso"
         } else {
-            const uid = saveImg(img)
-            console.log("IMG UID = ", uid)
-            user.imgReference = uid;
             await userRepository.createUser(user)
+            const results = imgs.map(img => {
+                const uid = saveImg(img)
+                const obj = {
+                    id,
+                    uid
+                };
+            });
+
+
             //insertar en la tabla correspondiente el uid usuario
             const token = createToken({ uidCorreo })
 

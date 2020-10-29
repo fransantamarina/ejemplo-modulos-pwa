@@ -14,6 +14,6 @@ router.get('/confirm?', confirmRegistration)
 
 
 //ruta de prueba de subida de imagens
-router.post("/upload",upload.single("imagen"), saveImage)
+router.post("/upload",upload.array(("imagen")/*max count = cantidad de elementos que puede tener el array*/), saveImage)
 
 module.exports = router;

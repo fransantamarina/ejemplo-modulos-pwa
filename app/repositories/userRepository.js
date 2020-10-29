@@ -3,14 +3,8 @@ const { User, Image } = require("../models/index");
 module.exports = {
 
     async createUser(user) {
-        const { imgReference } = user
-
         await User.create(user)
             .then((user) => {
-                Image.create({
-                    id: imgReference,
-                    ownerId: user.dataValues.id
-                })
                 return { correo, uidCorreo, id } = user.dataValues
             }).catch((err) => {
                 console.log(err)
